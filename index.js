@@ -9,6 +9,7 @@ const connection = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
+    port: process.env.MYSQL_PORT,
 });
 
 connection.connect((err) => {
@@ -41,20 +42,6 @@ createDatabase();
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    let q2 = `INSERT INTO Contact 
-    (phoneNumber, email, linkPrecedence) 
-    VALUES 
-    ('9876543210', 'test@gmail.com', 'primary')`;
-
-    try {
-        connection.query(q2, (err, result) => {
-            if (err) throw err;
-            console.log(result);
-        });
-    } catch (err) {
-        console.log(err);
-    }
-
     res.send("Hello world!");
 })
 
